@@ -4,4 +4,7 @@
 
 <p>Current count: <strong>{{ currentCount }}</strong></p>
 
-<button (click)="incrementCounter()">Increment</button>
+<button pButton type="button" label="Click" icon="fa-check" class="ui-button-warning" (click)="incrementCounter()"></button>
+<p-splitButton label="Akcja" icon="fa-check" (onClick)="save()" [model]="items"></p-splitButton>
+<!--<p-messages [value]="msgs"></p-messages>-->
+<p-growl [value]="msgs"  life="3000"></p-growl>

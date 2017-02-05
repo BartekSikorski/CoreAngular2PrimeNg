@@ -2,7 +2,7 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
+<!--<p *ngIf="!forecasts"><em>Loading...</em></p>
 
 <table class='table' *ngIf="forecasts">
     <thead>
@@ -21,4 +21,12 @@
             <td>{{ forecast.summary }}</td>
         </tr>
     </tbody>
-</table>
+</table>-->
+
+<p-dataTable [value]="forecasts" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+    <p-header>Forecast</p-header>
+    <p-column field="dateFormatted" header="dateFormatted"></p-column>
+    <p-column field="temperatureC" header="temperatureC"></p-column>
+    <p-column field="temperatureF" header="temperatureF"></p-column>
+    <p-column field="summary" header="summary"></p-column>
+</p-dataTable>

@@ -32,6 +32,7 @@ module.exports = {
             'es6-promise',
             'jquery',
             'zone.js',
+            'font-awesome/css/font-awesome.css'
         ]
     },
     output: {

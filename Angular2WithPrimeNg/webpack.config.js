@@ -1,13 +1,14 @@
 var isDevBuild = process.argv.indexOf('--env.prod') < 0;
 var path = require('path');
 var webpack = require('webpack');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var nodeExternals = require('webpack-node-externals');
 var merge = require('webpack-merge');
 var allFilenamesExceptJavaScript = /\.(?!js(\?|$))([^.]+(\?|$))/;
 
 // Configuration in common to both client-side and server-side bundles
 var sharedConfig = {
-    resolve: { extensions: [ '', '.js', '.ts' ] },
+    resolve: { extensions: ['', '.js', '.ts'] },
     output: {
         filename: '[name].js',
         publicPath: '/dist/' // Webpack dev middleware, if enabled, handles requests for this URL prefix
@@ -28,6 +29,9 @@ var clientBundleConfig = merge(sharedConfig, {
     output: { path: path.join(__dirname, './wwwroot/dist') },
     devtool: isDevBuild ? 'inline-source-map' : null,
     plugins: [
+        new CopyWebpackPlugin([
+        { from: './node_modules/primeng/resources', to: 'resources' }
+        ]),
         new webpack.DllReferencePlugin({
             context: __dirname,
             manifest: require('./wwwroot/dist/vendor-manifest.json')
